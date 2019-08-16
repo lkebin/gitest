@@ -1,0 +1,12 @@
+steps:
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['build', '-f', 'Dockerfile', '--tag=gcr.io/$PROJECT_ID/esc:$TAG_NAME', '.']
+# - name: 'gcr.io/cloud-builders/docker'
+#   args: ['build', '-f', 'Dockerfile.debian', '--tag=gcr.io/$PROJECT_ID/go:debian', '.']
+
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['tag', 'gcr.io/$PROJECT_ID/esc:$TAG_NAME', 'gcr.io/$PROJECT_ID/esc']
+
+images:
+- 'gcr.io/$PROJECT_ID/esc'
+- 'gcr.io/$PROJECT_ID/esc:$TAG_NAME'
